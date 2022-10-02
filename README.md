@@ -64,7 +64,8 @@
 - Know how each algorithm works
 - Given a list, can show the partially sorted list after k rounds of sorting.
 - Know the time/space complexity of each algorithm and how to briefly justify it
-- Know one way to implement each algorithm (in particular, how to address the technical challenges) 2. Merge Sort
+- Know one way to implement each algorithm (in particular, how to address the technical challenges)
+### 2. Merge Sort
 - Know how it works
 - Know how to implement a function that merge two sorted lists into one sorted list
 - Know the time complexity and how to briefly justify it e.g., why there is a log2 n or why there is an n.
