@@ -2,6 +2,8 @@
 #define PART_5_SORTING_ALGOS_H
 
 #include <cstdint>
+#include <vector>
+#include <iostream>
 
 // Sorting algorithms from here are taken from GeeksForGeeks
 namespace sorting {
@@ -156,6 +158,107 @@ namespace sorting {
             // Sort and merge the two arrays together
             merge_arrays(array, left_index, midpoint, right_index);
         }
+    }
+
+    int partition(int* array, int lower_bound, int upper_bound) {
+        // Get the last element for the pivot point
+        // It will move the elements around the pivot point and move the pivot element to its correct location
+        int pivot = array[upper_bound];
+
+        // Loop through each element within the bounds
+        // If the current element is smaller than the pivot element increase the smallest element index
+        // then swap the smallest element index with the current element
+        int i = (lower_bound - 1);
+        for (int j = 0; j <= upper_bound -1; j++) {
+            if (array[j] < pivot) {
+                i++;
+
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        // Swap the pivot element to its correct location
+        int temp = array[i + 1];
+        array[i + 1] = array[upper_bound];
+        array[upper_bound] = temp;
+
+        // Return the partition index
+        return (i + 1);
+    }
+
+    void quick_sort(int* array, int lower_bound, int upper_bound) {
+        if (upper_bound > lower_bound) {
+            // Get the partition index
+            int partition_index = partition(array, lower_bound, upper_bound);
+
+            // Recursively sort around the partition index
+            quick_sort(array, lower_bound, partition_index - 1);
+            quick_sort(array, partition_index + 1, upper_bound);
+        }
+    }
+
+    void bucket_sort(float* array, int size) {
+        // Create size many buckets
+        std::vector<float> bucket[size];
+
+        // Loop through all elements in the array and sort them into buckets using the bucket index (size * num)
+        for (int idx = 0; idx < size; idx++) {
+            int bucket_index = size * array[idx];
+            bucket[bucket_index].push_back(array[idx]);
+        }
+
+        // Sort each bucket with std::sort
+        for (int idx = 0; idx < size; idx++) {
+            std::sort(bucket[idx].begin(), bucket[idx].end());
+        }
+
+        // Add each bucket to the array
+        int index = 0;
+        for (int idx = 0; idx < size; idx++) {
+            for (int bdx = 0; bdx < bucket[idx].size(); bdx++) {
+                array[index++] = bucket[idx][bdx];
+            }
+        }
+    }
+
+    void counting_sort(char* array, int size, int max_val) {
+        char output[size];
+        char count[max_val + 1];
+
+        // Set all elements in the count array to 0
+        memset(count, 0, sizeof(count));
+
+        // Find the numerical appearances of each element in the original array
+        // We can do this because chars (should) have a numerical value that is between 0 and 255 (max_val)
+        // This will fit inside the count array, so we can increment the index it is at in the count array
+        for (int idx = 0; idx < size; idx++) {
+            if (array[idx] > 0 && array[idx] <= max_val) {
+                ++count[array[idx]];
+            }
+        }
+
+        // Shift each element down so it will match the position in the original array
+        for (int idx = 1; idx <= max_val; idx++) {
+            count[idx] += count[idx - 1];
+        }
+
+        // Here we can use array[idx] as the boolean value for the for loop to continue
+        // The last should be 0 for a null terminator or nonexistent character
+        for (int idx = 0; array[idx]; idx++) {
+            output[count[array[idx]] - 1] = array[idx];
+            --count[array[idx]];
+        }
+
+        // Copy the contents of the temp output array to our main array
+        for (int idx = 0; array[idx]; idx++) {
+            array[idx] = output[idx];
+        }
+    }
+
+    void radix_sort(int* array, int size) {
+        // We're all failing this one
     }
 }
 
