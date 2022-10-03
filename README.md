@@ -84,7 +84,8 @@
 - Know how it works (at least the lectured algorithm)
 - Given an input list, can elaborate newly created vectors.
 - Know the time complexity and how to briefly justify it e.g., why there is an n or K (max value in the list).
-- Know the space complexity and how to briefly justify it (based on a given implementation) 7. Radix Sort
+- Know the space complexity and how to briefly justify it (based on a given implementation)
+### 7. Radix Sort
 - Know how it works (its subroutine)
 - Given an input list, can show the partially sorted list after K bits are sorted
 - Know how to implement Radix Sort, especially
