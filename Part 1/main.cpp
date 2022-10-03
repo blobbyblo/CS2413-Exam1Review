@@ -4,8 +4,13 @@
 #include "ClassExample.h"
 
 void cin_cout_example() {
+    // Define our variable to be used as storage with console input (cin)
     int input = 0;
+    
+    // Obtain (numerical in this case) keyboard input and assign that value to "input"
     std::cin >> input;
+    
+    // Output the contents of "input" to the console with a newline character at the end
     std::cout << input << std::endl;
 }
 
