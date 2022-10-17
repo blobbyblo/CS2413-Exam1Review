@@ -83,12 +83,12 @@ namespace sorting {
                 if (array[min_idx] > array[jdx]) {
                     min_idx = jdx;
                 }
-                // Swap the first element of the array with the minimum element
-                if (min_idx != idx) {
-                    int temp = array[min_idx];
-                    array[min_idx] = array[idx];
-                    array[idx] = temp;
-                }
+            }
+            // Swap the first element of the array with the minimum element
+            if (min_idx != idx) {
+                int temp = array[min_idx];
+                array[min_idx] = array[idx];
+                array[idx] = temp;
             }
         }
     }
